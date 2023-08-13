@@ -1,5 +1,6 @@
 package lesson1
 
+//коммент для правильной перезаливки коммита
 fun main() {
     val year: String = "1961"
     var hour: String = "09"
