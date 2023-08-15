@@ -8,8 +8,8 @@ fun main() {
     val travelTimeInHours = travelTimeInMinutes / 60
     val remainingTravelTimeInMinutes = travelTimeInMinutes % 60
 
-    val arrivalMinutes = (departureMinutes + travelTimeInMinutes) % 60
-    val arrivalHour = ((departureHour + travelTimeInHours) + (departureMinutes + travelTimeInMinutes) / 60) % 24
+    val arrivalMinutes = (departureMinutes + remainingTravelTimeInMinutes) % 60
+    val arrivalHour = ((departureHour + travelTimeInHours) + (departureMinutes + remainingTravelTimeInMinutes) / 60) % 24
 
     println(String.format("Время прибытия поезда: %02d:%02d", arrivalHour, arrivalMinutes))
 
