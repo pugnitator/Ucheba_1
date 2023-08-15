@@ -9,12 +9,14 @@ fun main() {
     val monPermanentStaffSalaryExpenses = numberOfPermanentStaff * employeeSalary
     val monInternsSalaryExpenses = numberOfInterns * internSalary
     val monSalaryExpenses = monPermanentStaffSalaryExpenses + monInternsSalaryExpenses
-    val averageSalary = monSalaryExpenses/numberOfAllEmployee
+    val averageSalary = monSalaryExpenses / numberOfAllEmployee
 
-    println("""
+    println(
+        """
         Расходы на выплату зарплаты постоянных сотрудников: $monPermanentStaffSalaryExpenses.
         Общие расходы по ЗП после прихода стажеров: $monSalaryExpenses.
-        Средняя ЗП одного сотрудника после устройства стажеров: $averageSalary.""".trimIndent())
+        Средняя ЗП одного сотрудника после устройства стажеров: $averageSalary.""".trimIndent()
+    )
 
 
 }
