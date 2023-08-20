@@ -10,10 +10,10 @@ fun main() {
 
     println(
         "Груз с весом $cargoWeight кг и объемом $cargoVolume л соответствует категории \"Average\": " +
-                "${averageMinWeight <= cargoWeight && cargoWeight <= averageMaxWeight && cargoVolume < averageVolume}"
+                "${AVERAGE_MIN_WEIGHT <= cargoWeight && cargoWeight <= AVERAGE_MAX_WEIGHT && cargoVolume < AVERAGE_VOLUME}"
     )
 }
 
-const val averageMinWeight = 35
-const val averageMaxWeight = 100
-const val averageVolume = 100
+const val AVERAGE_MIN_WEIGHT = 35
+const val AVERAGE_MAX_WEIGHT = 100
+const val AVERAGE_VOLUME = 100
