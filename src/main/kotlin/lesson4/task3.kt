@@ -2,17 +2,16 @@ package lesson4
 
 fun main() {
 
-    val sunnyWeather = true
-    val awningIsOpen = true
+    val isSunny = true
+    val isAwningOpen = true
     val airHumidity = 20
     val season = "зима"
 
     val conditionsAreFavorable =
-        sunnyWeather && awningIsOpen && (airHumidity == constAirHumidity) && (season == constSeason)
+        isSunny && isAwningOpen && (airHumidity == CONST_AIR_HUMIDITY) && (season != "зима")
 
     println("Благоприятные ли условия сейчас для роста бобовых? $conditionsAreFavorable")
 
 }
 
-const val constAirHumidity = 20
-const val constSeason = "лето"
+const val CONST_AIR_HUMIDITY = 20
