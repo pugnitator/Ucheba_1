@@ -28,9 +28,16 @@ fun main() {
     } else println(
         "Может ли корабль отправится в плавание: " +
                 "${
-                    ((!isDamaged && numberOfCrew in 55..70) || (isDamaged && numberOfCrew == 70)) &&
-                            isTheWeatherGood && numberOfCargo > 50
+                    ((!isDamaged && numberOfCrew in MIN_NUMBER_OF_CREW..MAX_NUMBER_OF_CREW) || 
+                            (isDamaged && numberOfCrew == NUMBER_OF_CREW_FOR_DAMAGED_SHIP)) && 
+                            isTheWeatherGood && numberOfCargo > MIN_NUMBER_OF_CARGO
                 }"
     )
 
 }
+
+const val MIN_NUMBER_OF_CREW = 55
+const val MAX_NUMBER_OF_CREW = 70
+const val NUMBER_OF_CREW_FOR_DAMAGED_SHIP = 70
+const val MIN_NUMBER_OF_CARGO = 50
+
