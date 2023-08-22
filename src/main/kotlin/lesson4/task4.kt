@@ -7,18 +7,19 @@ fun main() {
 
     print("Какой по счёту день тренировки: ")
     val trainingDay = readln().toInt()
-    val handsExercises = true
-    val legsExercises = false
-    val backExercises = false
-    val pressExercises = true
 
     val evenNumberOfTrainingDay = (trainingDay % 2) == 0
 
+    val handsExercises = !evenNumberOfTrainingDay
+    val legsExercises = evenNumberOfTrainingDay
+    val backExercises = evenNumberOfTrainingDay
+    val pressExercises = !evenNumberOfTrainingDay
+
     val recommendation = """
-        Упражнения для рук: ${if (evenNumberOfTrainingDay) !handsExercises else handsExercises}
-        Упражнения для ног: ${if (evenNumberOfTrainingDay) !legsExercises else legsExercises}
-        Упражнения для спины: ${if (evenNumberOfTrainingDay) !backExercises else backExercises}
-        Упражнения для пресса: ${if (evenNumberOfTrainingDay) !pressExercises else pressExercises}
+        Упражнения для рук: $handsExercises
+        Упражнения для ног: $legsExercises
+        Упражнения для спины: $backExercises
+        Упражнения для пресса: $pressExercises
     """.trimIndent()
 
     println(recommendation)
