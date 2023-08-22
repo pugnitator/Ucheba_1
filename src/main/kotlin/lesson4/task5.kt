@@ -25,6 +25,12 @@ fun main() {
     if (numberOfCargo == null) {
         println("Введено неверное значение. Начните заново.")
         return
-    } else println("Продолжение следует.")
+    } else println(
+        "Может ли корабль отправится в плавание: " +
+                "${
+                    ((!isDamaged && numberOfCrew in 55..70) || (isDamaged && numberOfCrew == 70)) &&
+                            isTheWeatherGood && numberOfCargo > 50
+                }"
+    )
 
 }
