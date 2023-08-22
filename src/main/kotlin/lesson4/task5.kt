@@ -33,7 +33,6 @@ fun main() {
                             isTheWeatherGood && numberOfCargo > MIN_NUMBER_OF_CARGO
                 }"
     )
-
 }
 
 const val MIN_NUMBER_OF_CREW = 55
