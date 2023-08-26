@@ -8,25 +8,23 @@ fun main() {
     val password = readln().toString()
 
     println("\nПройдите авторизацию для логина $login.")
-    var attemptCounter = 0
+    var attemptCounter = 3
 
     do {
-        if (attemptCounter in 1 until NUMBER_OF_ATTEMPTS) println(
+        if (attemptCounter in 1 until 3) println(
             "\nПароль был введен неверно, попробуйте ещё раз. " +
-                    "Попыток остлось: ${NUMBER_OF_ATTEMPTS - attemptCounter}"
+                    "Попыток остлось: $attemptCounter"
         )
-        if (attemptCounter == 3) {
+        if (attemptCounter == 0) {
             println("\nПопыток для ввода пароля не осталось, " +
                     "восстановите пароль или пройдите регистрацию заново.")
             return
         }
         print("Введите пароль: ")
         val theEnteredPassword = readln().toString()
-        attemptCounter += 1
+        attemptCounter--
     } while (theEnteredPassword != password)
 
     println("Авторизация прошла успешно!")
 
 }
-
-const val NUMBER_OF_ATTEMPTS = 3
