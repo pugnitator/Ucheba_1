@@ -4,16 +4,10 @@ fun main() {
 
     print("Какое кол-во секунд нужно засечь: ")
     val numberOfSeconds = readln().toIntOrNull()
-    var totalIteration = numberOfSeconds
 
-    if (totalIteration == null) {
+    if (numberOfSeconds == null) {
         println("Введено некорректное значение. Начните заново.")
         return
-    } else {
-        while (totalIteration > 0) {
-            totalIteration--
-            Thread.sleep(1000)
-        }
-    }
+    } else Thread.sleep((numberOfSeconds * 1000).toLong())
     println("Прошло $numberOfSeconds секунд.")
 }
