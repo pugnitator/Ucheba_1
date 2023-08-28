@@ -9,10 +9,5 @@ fun main() {
     if (lastNumber == null) {
         println("Введено некорректное значение. Начните заново.")
         return
-    } else {
-        for (i in firstNumber..lastNumber) {
-            if (i % 2 == 0) println(i)
-            else continue
-        }
-    }
+    } else for (i in firstNumber..lastNumber step 2) println(i)
 }
