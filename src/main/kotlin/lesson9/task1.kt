@@ -4,7 +4,7 @@ fun main() {
 
     val ingredientsForTheDish = listOf("Яйцо", "Сахар", "Ванильный сахар")
 
-    println("Список ингредиентов: ")
+    println("В рецепте есть следующие ингредиенты: ")
     for (i in ingredientsForTheDish) println("${ingredientsForTheDish.indexOf(i) + 1}. $i")
 
 }
