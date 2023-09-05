@@ -2,6 +2,8 @@ package lesson8
 
 fun main() {
 
+    var ingredientsForTheDish = arrayOf("0")
+
     print("Введите кол-во ингредиентов в блюде: ")
     val countOfIngredients = readln().toIntOrNull()
     if (countOfIngredients == null) {
@@ -9,14 +11,14 @@ fun main() {
         return
     }
 
-    val ingredientsForTheDish: MutableList<String> = mutableListOf()
-
     for (i in 0 until countOfIngredients) {
         print("Введите название ингредиента ${i + 1}: ")
-        ingredientsForTheDish.add(readln())
+        val newIngredient = readln()
+        if (i == 0) ingredientsForTheDish[i] = newIngredient
+        else ingredientsForTheDish += newIngredient
     }
 
-    print("\nСоздан рецепт из $countOfIngredients ингредиентов: ")
-    println(ingredientsForTheDish)
+    println("\nСоздан рецепт из $countOfIngredients ингредиентов: ")
+    for (i in ingredientsForTheDish) println(i)
 
 }
