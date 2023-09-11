@@ -8,12 +8,10 @@ fun main() {
         println("Введено неверное значение. Попробуйте заново.")
         return
     }
-//    for (i in 0 until countOfIngredients) {
-    print("Введите названия ингредиентов: ")
+    print("Введите названия ингредиентов:\n")
     val ingredientsForTheDish = Array(countOfIngredients) { readln() }
-    println(ingredientsForTheDish.size)
 
     println("\nСоздан рецепт из $countOfIngredients ингредиентов: ")
-    for (i in ingredientsForTheDish) println(i)
+    for (i in ingredientsForTheDish) println("${ingredientsForTheDish.indexOf(i) + 1}. $i")
 
 }
