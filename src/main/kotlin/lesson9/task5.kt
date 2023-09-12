@@ -2,20 +2,26 @@ package lesson9
 
 fun main() {
 
-    val fiveIngredients = mutableListOf<String>()
+    val listOfIngredients = mutableListOf<String>()
     var countOfIngredients = 1
+    val numberOfIngredients = 2
 
-    while (fiveIngredients.size < 5) {
+    while (listOfIngredients.size < numberOfIngredients) {
         println("Введите название ингредиента $countOfIngredients: ")
         val ingredient = readln().toString().lowercase()
-        if (!fiveIngredients.contains<Any>(ingredient)) {
-            fiveIngredients.add(ingredient)
+        if (!listOfIngredients.contains<Any>(ingredient)) {
+            listOfIngredients.add(ingredient)
             countOfIngredients += 1
-        } else println("Вы ввели ингредиент, который уже содержится в списке. Он не будет записан")
+        } else println("Вы ввели ингредиент, который уже содержится в списке, он не будет записан.")
     }
-    println(fiveIngredients)
+    listOfIngredients.sort()
+//  listOfIngredients[0][0].uppercaseChar()
+    println("${listOfIngredients.joinToString()}.")
+
 
 }
+
+
 
 
 
