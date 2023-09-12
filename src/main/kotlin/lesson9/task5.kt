@@ -4,7 +4,7 @@ fun main() {
 
     val listOfIngredients = mutableListOf<String>()
     var countOfIngredients = 1
-    val numberOfIngredients = 2
+    val numberOfIngredients = 5
 
     while (listOfIngredients.size < numberOfIngredients) {
         println("Введите название ингредиента $countOfIngredients: ")
@@ -15,9 +15,11 @@ fun main() {
         } else println("Вы ввели ингредиент, который уже содержится в списке, он не будет записан.")
     }
     listOfIngredients.sort()
-//  listOfIngredients[0][0].uppercaseChar()
-    println("${listOfIngredients.joinToString()}.")
 
+    val firstIngredient = listOfIngredients[0].replaceFirstChar {it.uppercaseChar()}
+    listOfIngredients[0] = firstIngredient
+
+    println("${listOfIngredients.joinToString()}.")
 
 }
 
