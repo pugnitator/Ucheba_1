@@ -3,16 +3,14 @@ package lesson10
 fun main() {
 
     println("Введите логин: ")
-    val login = checkTheLengthOfTheString()
-
+    val login = readln()
     println("Введите пароль: ")
-    val password = checkTheLengthOfTheString()
+    val password = readln()
+
+    checkTheLengthOfTheString(login,password)
+
 }
-
-fun checkTheLengthOfTheString(): String {
-
-    val inputString = readln()
-    if (inputString.length < 4) println("Логин или пароль недостаточно длинные")
-    else return inputString
-
+fun checkTheLengthOfTheString(inputLogin: String, inputPassword: String) {
+    if ((inputLogin.length < 4) && (inputPassword.length < 4)) println("Логин или пароль недостаточно длинные.")
+    else println("Добро пожаловать!")
 }
