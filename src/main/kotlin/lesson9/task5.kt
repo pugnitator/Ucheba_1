@@ -2,7 +2,7 @@ package lesson9
 
 fun main() {
 
-    val listOfIngredients = mutableListOf<String>()
+    val listOfIngredients = sortedSetOf<String>()
     var countOfIngredients = 1
     val numberOfIngredients = 5
 
@@ -14,12 +14,8 @@ fun main() {
             countOfIngredients += 1
         } else println("Вы ввели ингредиент, который уже содержится в списке, он не будет записан.")
     }
-    listOfIngredients.sort()
 
-    val firstIngredient = listOfIngredients[0].replaceFirstChar {it.uppercaseChar()}
-    listOfIngredients[0] = firstIngredient
-
-    println("${listOfIngredients.joinToString()}.")
+    println("${listOfIngredients.joinToString().replaceFirstChar { it.uppercaseChar() }}.")
 
 }
 
