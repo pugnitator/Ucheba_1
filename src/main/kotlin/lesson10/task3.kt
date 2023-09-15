@@ -2,41 +2,30 @@ package lesson10
 
 fun main() {
 
-    print("Сколько символов должно быть в пароле (минимальное значение - 3): ")
+    print("Сколько символов должно быть в пароле (минимальное значение - $MIN_PASSWORD_LENGTH): ")
     val numberOfPasswordChar = readln().toIntOrNull()
-    val numbers = '0'..'9'
-    val lowercaseLetters = 'a'..'z'
-    val capitalLetters = 'A'..'Z'
-    var password = ""
 
-    if (numberOfPasswordChar == null || numberOfPasswordChar < 3) {
+    if (numberOfPasswordChar == null || numberOfPasswordChar < MIN_PASSWORD_LENGTH) {
         println("Введено некорретное значение, попробуйте заново.")
         return
-    } else {
-        do {
-            password = ""
-            for (i in 0 until numberOfPasswordChar) {
-                val arrayOfRandomChars = arrayOf(numbers.random(), lowercaseLetters.random(), capitalLetters.random())
-                val char = arrayOfRandomChars.random().toString()
-
-                password = if (password == "") char
-                else "$password$char"
-            }
-        } while (!numbers.any { it in password } || !lowercaseLetters.any { it in password } || !capitalLetters.any { it in password })
-
-        println(password)
-    }
+    } else println(generatePassword(numberOfPasswordChar))
 }
 
 fun generatePassword(inputNumbersOfChar: Int): String {
+    val numbers = ('0'..'9').toList()
+    val symbols = ('!'..'/').toList()
+    val space = " "
+    var password = ""
 
+    for (i in 0 until inputNumbersOfChar) {
+        val arrayOfRandomChars = arrayOf(numbers.random(), symbols.random(), " ")
+        val char = arrayOfRandomChars.random().toString()
 
+        password = if (password.isEmpty()) char
+        else "$password$char"
+    }
 
-//    val numbers = '0'..'9'
-//    val chars = '!'..'/'
-//    val passwordCharacters = arrayOf(numbers.random(), chars.random(), " ")
-//    val password = mutableListOf(inputNumbersOfChar) { Math.random() }
-//    for (i in 0 until inputNumbersOfChar) {
-//        password.add(passwordCharacters.random())
-
+    return password
 }
+
+const val MIN_PASSWORD_LENGTH = 3
