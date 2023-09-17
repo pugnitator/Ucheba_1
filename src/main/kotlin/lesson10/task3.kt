@@ -22,9 +22,6 @@ fun generatePassword(inputNumbersOfChar: Int): String {
 
         if (password.isEmpty()) password = char
         else password = "$password$char"
-//      если нужно соблюдать условие чередования цифр и символов:
-//        else if (password.last() in numbers) password = "$password${symbols.random()}"
-//        else password = "$password${numbers.random()}"
     }
     return password
 }
