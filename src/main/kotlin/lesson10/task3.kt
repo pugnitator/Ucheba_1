@@ -21,9 +21,14 @@ fun generatePassword(inputNumbersOfChar: Int): String {
         val char = arrayOfRandomChars.random().toString()
 
         if (password.isEmpty()) password = char
-        else password = "$password$char"
+        else if (password.last() in numbers) password = concatString(password, symbols.random().toString())
+        else password = concatString(password, numbers.random().toString())
     }
     return password
+}
+
+fun concatString(string1: String, string2: String): String {
+    return StringBuilder(string1).append(string2).toString()
 }
 
 const val MIN_PASSWORD_LENGTH = 3
