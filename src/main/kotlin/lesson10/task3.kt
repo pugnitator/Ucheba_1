@@ -17,8 +17,7 @@ fun generatePassword(inputNumbersOfChar: Int): String {
     var password = ""
 
     for (i in 0 until inputNumbersOfChar) {
-        val arrayOfRandomChars = arrayOf(numbers.random(), symbols.random())
-        val char = arrayOfRandomChars.random().toString()
+        val char = arrayOf(numbers.random(), symbols.random()).random().toString()
 
         if (password.isEmpty()) password = char
         else if (password.last() in numbers) password = concatString(password, symbols.random().toString())
