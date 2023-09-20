@@ -3,8 +3,17 @@ package lesson11
 fun main() {
     val user1 = NewUser(1, "kuku", "lala", "tutu@o.ru")
 
-    user1.printUserInfo()
+    user1.enterUserInfoInBio()
+    println()
 
+    user1.changeUserPassword()
+    println()
+
+    user1.printUserInfo()
+    println()
+
+    print("Введите сообщение, которое нужно отправить пользователю: ")
+    user1.sandAMassageToEmail(readln())
 
 }
 
@@ -15,27 +24,35 @@ class NewUser(
     val email: String,
     var bio: String? = null
 ) {
-
     fun printUserInfo() {
         println("Информация о пользователе: $id, $login, $password, $email, $bio.")
     }
 
     fun enterUserInfoInBio() {
+        print("Введите информацию о пользователе: ")
         bio = readln()
     }
 
     fun changeUserPassword() {
-        val oldPassword = readln()
+        print("Для изменения пароля введите текущий пароль: ")
+        var oldPassword: String
+        var attemptsNumber = PASSWORD_ENTRY_ATTEMPTS
         do {
-            if (oldPassword != password) {
-                println("Вы ввели неврный пароль.")
-                return
-            }
-        } while (oldPassword != password)
+            attemptsNumber -= 1
+            oldPassword = readln()
+            if (oldPassword != password) println("Вы ввели неврный пароль, попробуйте снова.")
+        } while ((oldPassword != password) && (attemptsNumber != 0))
 
         print("Введите новый пароль: ")
         password = readln()
+        println("Пароль изменён.")
 
     }
 
+    fun sandAMassageToEmail(massage: String) {
+        println("Дарахой $login, $massage.")
+    }
+
 }
+
+const val PASSWORD_ENTRY_ATTEMPTS = 3
