@@ -13,7 +13,7 @@ fun main() {
     println()
 
     print("Введите сообщение, которое нужно отправить пользователю: ")
-    user1.sandAMassageToEmail(readln())
+    user1.sendAMassageToEmail(readln())
 
 }
 
@@ -49,7 +49,7 @@ class NewUser(
 
     }
 
-    fun sandAMassageToEmail(massage: String) {
+    fun sendAMassageToEmail(massage: String) {
         println("Дарахой $login, $massage.")
     }
 
