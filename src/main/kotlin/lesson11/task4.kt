@@ -3,6 +3,15 @@ package lesson11
 fun main() {
 
 }
+fun sendSms (mobileNumber: String) {
+    val massage = readln()
+    println("Отправь на номер $mobileNumber сообщение: \"$massage\"")
+}
+
+fun makeACall (mobileNumber: String) {
+    val massage = readln()
+    println("Отправь на номер $mobileNumber сообщение: \"$massage\"")
+}
 
 class Contact(
     val firstName: String,
@@ -20,11 +29,9 @@ class Contact(
         )
     }
 
-    fun showClosePeopleSet () {
-        closePeopleSet.forEach {println(it)}
+    fun showClosePeopleSet() {
+        closePeopleSet.forEach { println(it) }
     }
-
-
 }
 
 class SquareIcon(
