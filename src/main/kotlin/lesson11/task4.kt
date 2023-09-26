@@ -1,30 +1,59 @@
 package lesson11
 
 fun main() {
-    val user1ClosePeople = mutableSetOf<Contact>()
+    val user1ClosePeople = mutableListOf<String>()
+    val user0 = Contact(
+        "жена",
+        null,
+        null,
+        "8(999)999-42-42",
+        "8(999)888-42-42",
+        "жена",
+        "mail.mail.ru",
+        null
+    )
+    user1ClosePeople.add(user0.firstName)
+    val user2 = Contact(
+        "подруга",
+        null,
+        null,
+        "8(999)999-42-42",
+        "8(999)888-42-42",
+        "жена",
+        "mail.mail.ru",
+        null
+    )
+    user1ClosePeople.add(user2.firstName)
+    val user3 = Contact(
+        "подруга",
+        null,
+        null,
+        "8(999)999-42-42",
+        "8(999)888-42-42",
+        "жена",
+        "mail.mail.ru",
+        null
+    )
+    user1ClosePeople.add(user3.firstName)
+
     val user1 = Contact(
         "First Name",
         "Second Name",
         null,
         "8(999)999-42-42",
         "8(999)888-42-42",
-        "мышка",
+        "фото мышки",
         "mail.mail.ru",
         user1ClosePeople
     )
     val user1ContactPage = ContactPage(user1)
-    user1ContactPage.showContactPage()
-
+    user1ContactPage.showContactPage(user1)
 }
 
 class SquareIcon(
     val icon: String,
     val iconName: String,
-) {
-    fun showIcon(): String {
-        return "$icon \n$iconName"
-    }
-}
+)
 
 class RoundIcon(
     val icon: String,
@@ -42,7 +71,7 @@ class Contact(
     val homeNumber: String? = null,
     var photo: String = "стандарный кружочек",
     val iCloud: String,
-    val closePeopleSet: MutableSet<Contact>,
+    val closePeopleSet: MutableList<String>? = null,
 ) {
 
     fun showBasicContactInfo() {
@@ -53,23 +82,14 @@ class Contact(
         println("$mobileNumber \n$homeNumber")
     }
 
-    fun showContactsIcloud() {
+    fun showContactsICloud() {
         println(iCloud)
     }
 
     fun showClosePeopleSet() {
-        closePeopleSet.forEach { println(it) }
+        closePeopleSet?.forEach { println(it) }
     }
 }
-
-//class FaceTime() {
-//    val faceTimeVideoCall = RoundIcon("иконка камеры")
-//    val faceTimeCall = RoundIcon("иконка телефона")
-//
-//    fun showFaceTimeBlock(): String {
-//        return "$faceTimeVideoCall $faceTimeCall"
-//    }
-//}
 
 class ContactPage(user: Contact) {
     val smsIcon = SquareIcon("иконка сообщения", "написать")
@@ -80,21 +100,27 @@ class ContactPage(user: Contact) {
     val faceTimeVideoCall = RoundIcon("иконка камеры")
     val faceTimeCall = RoundIcon("иконка телефона")
 
-    val pageHeader = user.showBasicContactInfo()
-    val userNumbers = user.showContactsPhoneNumbers()
-    val userEmail = user.showContactsIcloud()
-    val userClosePeopleSet = user.showClosePeopleSet()
 
-    fun showContactPage(): String {
+    fun showActionButtons () {
+        println("""
+            ${smsIcon.icon} | ${callIcon.icon} | ${videoCallIcon.icon} | ${emailIcon.icon}
+            ${smsIcon.iconName} | ${callIcon.iconName} | ${videoCallIcon.iconName} | ${emailIcon.iconName}
+        """.trimIndent())
+    }
+
+    fun showFaceTimeButtons() {
+        println("${faceTimeVideoCall.showIcon()} | ${faceTimeCall.showIcon()}")
+    }
+
+    fun showContactPage(user: Contact): String {
         return (
                 """
-            $pageHeader
-            ${smsIcon.icon} ${callIcon.icon} ${videoCallIcon.icon} ${emailIcon.icon}
-            ${smsIcon.iconName} ${callIcon.iconName} ${videoCallIcon.iconName} ${emailIcon.iconName}
-            $userNumbers
-            ${faceTimeVideoCall.showIcon()} ${faceTimeCall.showIcon()}
-            $userEmail
-            $userClosePeopleSet
+            ${user.showBasicContactInfo()}
+            ${showActionButtons()}
+            ${user.showContactsPhoneNumbers()}
+            ${showFaceTimeButtons()}
+            ${user.showContactsICloud()}
+            ${user.showClosePeopleSet()}
         """.trimIndent()
                 )
     }
