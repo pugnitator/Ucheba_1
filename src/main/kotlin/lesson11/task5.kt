@@ -11,8 +11,8 @@ class Forum {
     val users = mutableSetOf<NewUserT5>()
     val massages = mutableListOf<String>()
     fun createNewUser(): NewUserT5 {
-        var user: NewUserT5
-        user.id = users.size + 1
+        val userId = users.size + 1
+        var user: NewUserT5 = NewUserT5(userId, "0", "0", "0")
         print("Введите никнейм: ")
         user.login = readln().toString()
         print("Введите пароль: ")
