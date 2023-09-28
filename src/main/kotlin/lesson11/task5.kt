@@ -3,18 +3,24 @@ package lesson11
 fun main() {
 
     val forum = Forum()
-    forum.createNewUser()
+    val user1 = forum.createNewUser()
+    val user2 = forum.createNewUser()
+    forum.createNewMassage(user1)
+    forum.createNewMassage(user2)
+    forum.createNewMassage(user1)
+    forum.createNewMassage(user2)
 
-    println(forum.createNewMassage())
+    forum.printThread()
 
 }
 
 class Forum {
     val users = mutableSetOf<NewUserT5>()
-    val massages = mutableSetOf<Pair<Int, () -> String>>()
+    val massages = mutableMapOf<Int, Pair<String, String>>()
+
     fun createNewUser(): NewUserT5 {
         val userId = users.size + 1
-        var user: NewUserT5 = NewUserT5(userId, "0", "0", "0")
+        val user: NewUserT5 = NewUserT5(userId, "0", "0", "0")
         print("Введите никнейм: ")
         user.login = readln().toString()
         print("Введите пароль: ")
@@ -27,11 +33,16 @@ class Forum {
         return user
     }
 
-    fun createNewMassage: MutableSet<Pair<Int, () -> String>> {
+    fun createNewMassage(author: NewUserT5): MutableMap<Int, Pair<String, String>> {
+        val massageId: Int = massages.size + 1
         println("Введите сообщение: ")
-        val massage = {} to { readln() }
-        massages.add(massage)
+        val massage = Pair<String, String>(author.login, readln())
+        massages[massageId] = massage
         return massages
+    }
+
+    fun printThread() {
+        massages.forEach{println(it.value.toString().replace(',', ':').removePrefix("(").removeSuffix(")"))}
     }
 }
 
