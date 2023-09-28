@@ -5,11 +5,13 @@ fun main() {
     val forum = Forum()
     forum.createNewUser()
 
+    println(forum.createNewMassage())
+
 }
 
 class Forum {
     val users = mutableSetOf<NewUserT5>()
-    val massages = mutableListOf<String>()
+    val massages = mutableSetOf<Pair<Int, () -> String>>()
     fun createNewUser(): NewUserT5 {
         val userId = users.size + 1
         var user: NewUserT5 = NewUserT5(userId, "0", "0", "0")
@@ -25,8 +27,11 @@ class Forum {
         return user
     }
 
-    fun createNewMassage() {
-
+    fun createNewMassage: MutableSet<Pair<Int, () -> String>> {
+        println("Введите сообщение: ")
+        val massage = {} to { readln() }
+        massages.add(massage)
+        return massages
     }
 }
 
