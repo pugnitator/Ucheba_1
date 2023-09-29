@@ -42,7 +42,7 @@ class Forum {
     }
 
     fun printThread() {
-        massages.forEach{println(it.value.toString().replace(',', ':').removePrefix("(").removeSuffix(")"))}
+        massages.forEach{println("${it.value.first}: ${it.value.second}")}
     }
 }
 
