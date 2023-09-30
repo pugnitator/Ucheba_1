@@ -3,8 +3,10 @@ package lesson11
 fun main() {
 
     val forum = Forum()
-    val user1 = forum.createNewUser()
-    val user2 = forum.createNewUser()
+    println("Заполните данные для регистрации:")
+    val user1 = forum.createNewUser(readln(), readln(), readln())
+    println("Заполните данные для регистрации:")
+    val user2 = forum.createNewUser(readln(), readln(), readln())
     forum.createNewMassage(user1)
     forum.createNewMassage(user2)
     forum.createNewMassage(user1)
@@ -18,31 +20,25 @@ class Forum {
     val users = mutableSetOf<NewUserT5>()
     val massages = mutableMapOf<Int, Pair<String, String>>()
 
-    fun createNewUser(): NewUserT5 {
-        val userId = users.size + 1
-        val user: NewUserT5 = NewUserT5(userId, "0", "0", "0")
-        print("Введите никнейм: ")
-        user.login = readln().toString()
-        print("Введите пароль: ")
-        user.password = readln().toString()
-        print("Введите e-mail: ")
-        user.email = readln().toString()
-
-        println("Пользователь зарегистрирован.")
-
+    fun createNewUser(login: String, password: String, email: String): NewUserT5 {
+        val lastUserId = users.lastOrNull()?.id ?: 0
+        val id = lastUserId + 1
+        val user = NewUserT5(id, login, password, email)
+        users.add(user)
         return user
     }
 
     fun createNewMassage(author: NewUserT5): MutableMap<Int, Pair<String, String>> {
-        val massageId: Int = massages.size + 1
-        println("Введите сообщение: ")
+        val lastMassageId: Int = massages.keys.lastOrNull() ?: 0
+        val massageId = lastMassageId + 1
+        println("${author.login}, введите сообщение: ")
         val massage = Pair<String, String>(author.login, readln())
         massages[massageId] = massage
         return massages
     }
 
     fun printThread() {
-        massages.forEach{println("${it.value.first}: ${it.value.second}")}
+        massages.forEach { println("${it.value.first}: ${it.value.second}") }
     }
 }
 
