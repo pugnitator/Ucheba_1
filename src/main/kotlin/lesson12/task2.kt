@@ -7,12 +7,18 @@ fun main() {
 }
 
 class WeatherProgram1(
-    daytimeTemperature: Float = 0.0F,
-    nightTemperature: Float = 0.0F,
-    isItRain: Boolean = false,
-    atmosphericPressure: Int = 0,
+    daytimeTemperature: Float,
+    nightTemperature: Float,
+    isItRain: Boolean,
+    atmosphericPressure: Int,
 ) {
+    val inputDaytimeTemperature = daytimeTemperature
+    val inputNightTemperature = nightTemperature
+    val inputIsItRain = isItRain
+    val inputAtmosphericPressure = atmosphericPressure
+
     init {
-        println("$daytimeTemperature, $nightTemperature, $isItRain, $atmosphericPressure.")
+        println("$inputDaytimeTemperature, $inputNightTemperature, $inputIsItRain, $inputAtmosphericPressure.")
     }
+
 }
