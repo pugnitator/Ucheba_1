@@ -6,10 +6,10 @@ fun main() {
     val weatherProgram3 = WeatherProgram2(23.7F, 11.4F, false, 758)
 }
 class WeatherProgram2(
-    daytimeTemperature: Float = 0.0F,
-    nightTemperature: Float = 0.0F,
-    isItRain: Boolean = false,
-    atmosphericPressure: Int = 760,
+    val daytimeTemperature: Float = 0.0F,
+    val nightTemperature: Float = 0.0F,
+    val isItRain: Boolean = false,
+    val atmosphericPressure: Int = 760,
 ) {
     init {
         println("$daytimeTemperature, $nightTemperature, $isItRain, $atmosphericPressure.")
