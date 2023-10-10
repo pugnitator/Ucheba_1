@@ -1,16 +1,39 @@
 package lesson12
 
-import kotlin.random.Random
+import kotlin.math.roundToInt
+import kotlin.random.Random.Default.nextBoolean
+import kotlin.random.Random.Default.nextDouble
 
 fun main() {
     val weatherList = mutableListOf<WeatherProgram2>()
-    for (i in 0..10) {
-        val weatherProgram = WeatherProgram2((Random.nextFloat(-30.0F, 50.0F)), (Random.nextFloat(-30.0F, 50.0F)), true, (Random.nextFloat(700.0F, 800.0F )))
-        weatherList.add(i, )
+    var averageDaytimeTemperature = 0.00f
+    var averageNightTemperature = 0.00f
+    var averageAtmosphericPressure = 0.00f
+    var numberOfRainyDay = 0
+
+    for (i in 0 until 10) {
+        val weatherProgram = createRandomWeatherProgram()
+        weatherList.add(i, weatherProgram)
     }
-    val weatherProgram1 = WeatherProgram2(45.4F, 10.4F, true, 740.0F)
-    val weatherProgram2 = WeatherProgram2(25.7F, 19.4F, false, 755.0F)
-    val weatherProgram3 = WeatherProgram2(23.7F, 11.4F, false, 758.0F)
+
+    for (i in 0 until weatherList.size) {
+        averageDaytimeTemperature += weatherList[i].daytimeTemperature
+        averageNightTemperature += weatherList[i].nightTemperature
+        averageAtmosphericPressure += weatherList[i].atmosphericPressure
+
+        if (weatherList[i].isItRain) numberOfRainyDay += 1
+        else continue
+    }
+    averageDaytimeTemperature = calculateTheAverageValue(averageDaytimeTemperature, weatherList.size)
+    averageNightTemperature = calculateTheAverageValue(averageNightTemperature, weatherList.size)
+    averageAtmosphericPressure = calculateTheAverageValue(averageAtmosphericPressure, weatherList.size)
+
+    println("""
+        Средняя температура днём: $averageDaytimeTemperature
+        Средняя температура ночью: $averageNightTemperature
+        Среднее атмосферное давление: $averageAtmosphericPressure
+        Количество дождливых дней: $numberOfRainyDay из ${weatherList.size}
+    """.trimIndent())
 }
 
 class WeatherProgram2(
@@ -20,28 +43,30 @@ class WeatherProgram2(
     val atmosphericPressure: Float,
 ) {
 
-    var averageDaytimeTemperature = Float
-    var averageAtmosphericPressure = Float
-
-    constructor(
-        daytimeTemperature: Float,
-        nightTemperature: Float,
-        isItRain: Boolean,
-        atmosphericPressure: Float,
-        averageDaytimeTemperature: Float,
-        averageAtmosphericPressure: Float,
-        ) : this(daytimeTemperature, nightTemperature, isItRain, atmosphericPressure) {
-
-        this.averageDaytimeTemperature = averageDaytimeTemperature
-
-    }
-
     init {
         println("$daytimeTemperature, $nightTemperature, $isItRain, $atmosphericPressure.")
     }
+
 }
 
-fun Random.nextFloat(from: Float, until: Float): Float {
-    return Random.nextDouble(from.toDouble(), until.toDouble()).toFloat()
+fun randomFloat(from: Float, until: Float): Float {
+    return nextDouble(from.toDouble(), until.toDouble()).toFloat()
 }
-const val TEMPERATURE_RANGE = (-50.0F..50.0F)
+
+fun roundToHundredths(variable: Float): Float {
+    return ((variable * 100).roundToInt() / 100.0).toFloat()
+}
+
+fun createRandomWeatherProgram(): WeatherProgram2 {
+    return WeatherProgram2(
+        roundToHundredths(randomFloat(-30.0F, 50.0F)),
+        roundToHundredths(randomFloat(-30.0F, 50.0F)),
+        nextBoolean(),
+        roundToHundredths(randomFloat(700.0F, 800.0F))
+    )
+}
+
+fun calculateTheAverageValue(sumOfVariables: Float, numberOfDays: Int): Float {
+    return roundToHundredths(sumOfVariables / numberOfDays)
+}
+
