@@ -5,7 +5,7 @@ import kotlin.random.Random.Default.nextBoolean
 import kotlin.random.Random.Default.nextDouble
 
 fun main() {
-    val weatherList = mutableListOf<WeatherProgram2>()
+    val weatherList = mutableListOf<WeatherProgram4>()
     var averageDaytimeTemperature = 0.00f
     var averageNightTemperature = 0.00f
     var averageAtmosphericPressure = 0.00f
@@ -36,7 +36,7 @@ fun main() {
     """.trimIndent())
 }
 
-class WeatherProgram2(
+class WeatherProgram4(
     val daytimeTemperature: Float,
     val nightTemperature: Float,
     val isItRain: Boolean,
@@ -57,8 +57,8 @@ fun roundToHundredths(variable: Float): Float {
     return ((variable * 100).roundToInt() / 100.0).toFloat()
 }
 
-fun createRandomWeatherProgram(): WeatherProgram2 {
-    return WeatherProgram2(
+fun createRandomWeatherProgram(): WeatherProgram4 {
+    return WeatherProgram4(
         roundToHundredths(randomFloat(-30.0F, 50.0F)),
         roundToHundredths(randomFloat(-30.0F, 50.0F)),
         nextBoolean(),
