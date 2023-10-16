@@ -19,8 +19,11 @@ open class Liner(
 
 class Icebreaker(
     name: String,
+    speed: Float = 30.0f,
+    loadCapacity: Float = 1.0f,
+    capacity: Int = 50,
     val speedWhenPassingIce: Int = 20,
-) : Liner(name, speed = 30.0f, loadCapacity = 1.0f, capacity = 50) {
+) : Liner(name, speed, loadCapacity, capacity) {
     fun breakTheIce() {
         println("Ломать лёд.")
     }
@@ -28,7 +31,10 @@ class Icebreaker(
 
 class CargoShip(
     name: String,
-) : Liner(name, speed = 35.0f, loadCapacity = 30000.0f, capacity = 70) {
+    speed: Float = 35.0f,
+    loadCapacity: Float = 30000.0f,
+    capacity: Int = 70,
+) : Liner(name, speed, loadCapacity , capacity) {
     fun loadTheCargo() {
         println("Погрузить.")
     }
