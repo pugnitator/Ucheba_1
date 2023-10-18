@@ -21,21 +21,13 @@ class Contact4(
 }
 
 fun enterNumber1(): Long? {
-    var number: Long?
-    do {
+    var number : Long?
         print("Введите номер телефона: ")
-        val inputNumber = readln()
-        number = inputNumber.toLongOrNull()
-        if (number == null) {
-            println("Ошибка ввода.")
-            break
-        } else if (number.toString().length != NUMBER_LENGTH) {
-            println("Недостаточно цифр в номере. Повторите попытку.")
+        try {
+            number = readln().toLong()
+        } catch (e: NumberFormatException) {
             number = null
+            println("Ошибка ввода.")
         }
-    } while (number == null)
-
     return number
 }
-
-const val NUMBER_LENGTH = 11
