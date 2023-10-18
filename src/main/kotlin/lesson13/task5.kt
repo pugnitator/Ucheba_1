@@ -8,7 +8,6 @@ fun main() {
         println(contact.getContact())
     }
 }
-
 class Contact4(
     var name: String?,
     var number: Long,
@@ -19,7 +18,6 @@ class Contact4(
         return "Имя: ${name} \nНомер: ${number} \nКомпания: $company\n"
     }
 }
-
 fun enterNumber1(): Long? {
     var number : Long?
         print("Введите номер телефона: ")
