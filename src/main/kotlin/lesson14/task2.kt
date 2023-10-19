@@ -6,15 +6,15 @@ fun main() {
     val cargoShip = CargoShip1("Грузовик")
 
     liner.getShipInfo()
-    liner.loading()
+    liner.load()
     println()
 
     icebreaker.getShipInfo()
-    icebreaker.loading()
+    icebreaker.load()
     println()
 
     cargoShip.getShipInfo()
-    cargoShip.loading()
+    cargoShip.load()
 }
 
 open class Liner1(
@@ -23,7 +23,7 @@ open class Liner1(
     val loadCapacity: Float = 30.0f,
     val capacity: Int = 3000,
 ) {
-    open fun loading() {
+    open fun load() {
         println("Выдвигает горизонтальный трап со шкафута.")
     }
 
@@ -46,7 +46,7 @@ class Icebreaker1(
     capacity: Int = 50,
     val speedWhenPassingIce: Float = 20.0f,
 ) : Liner1(name, speed, loadCapacity, capacity) {
-    override fun loading() {
+    override fun load() {
         println("Активирует погрузочный кран.")
     }
 
@@ -62,7 +62,7 @@ class CargoShip1(
     loadCapacity: Float = 30000.0f,
     capacity: Int = 70,
 ) : Liner1(name, speed, loadCapacity, capacity) {
-    override fun loading() {
+    override fun load() {
         println("Открывает ворота со стороны кормы.")
     }
 
