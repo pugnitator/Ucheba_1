@@ -23,9 +23,8 @@ fun enterNumber1(): Long? {
         print("Введите номер телефона: ")
         try {
             number = readln().toLong()
-        } catch (e: NumberFormatException) {
+        } catch (e: Error) {
             number = null
-            println("Ошибка ввода.")
         }
     return number
 }
