@@ -1,21 +1,24 @@
 package lesson14
 
+import kotlin.math.PI
 import kotlin.math.pow
 
 fun main() {
-    val blackCircle = Circle("чёрный", 5.02f)
-    val wightCircle = Circle("белый", 3.00f)
-    val blackRectangle = Rectangle("чёрный", 8.1f, 20.23f)
-    val wightRectangle = Rectangle("белый", 7.77f, 10.54f)
+    val blackCircle = Circle(BLACK_COLOR, 5.02f)
+    val wightCircle = Circle(WIGHT_COLOR, 3.00f)
+    val blackRectangle = Rectangle(BLACK_COLOR, 8.1f, 20.23f)
+    val wightRectangle = Rectangle(WIGHT_COLOR, 7.77f, 10.54f)
 
     val figureList : MutableList<Figure> = mutableListOf<Figure>(blackCircle, wightCircle, blackRectangle, wightRectangle)
-    var sumBlackFiguresPerimeter = 0.00f
+//    var sumBlackFiguresPerimeter = figureList.filter { it.color == BLACK_COLOR }.forEach{it.calculateThePerimeterOfTheFigure}
+
+    var sumBlackFiguresPerimeter = figureList.filter { it.color == BLACK_COLOR }.map.it.calculateThePerimeterOfTheFigure.sum()
     var sumWightFiguresArea = 0.00f
 
-    for (i: Int in 0 until figureList.size) {
-        if (figureList[i].color == "чёрный") sumBlackFiguresPerimeter += figureList[i].calculateThePerimeterOfTheFigure()
-        if (figureList[i].color == "белый") sumWightFiguresArea += figureList[i].calculateTheAreaOfTheFigure()
-    }
+//    for (i: Int in 0 until figureList.size) {
+//        if (figureList[i].color == "чёрный") sumBlackFiguresPerimeter += figureList[i].calculateThePerimeterOfTheFigure()
+//        if (figureList[i].color == "белый") sumWightFiguresArea += figureList[i].calculateTheAreaOfTheFigure()
+//    }
 
     println("""
         Сумма периметров чёрных фигур: $sumBlackFiguresPerimeter
@@ -24,12 +27,8 @@ fun main() {
 }
 
 abstract class Figure(val color: String) {
-    open fun calculateTheAreaOfTheFigure(): Float {
-        return 0.0f
-    }
-    open fun calculateThePerimeterOfTheFigure(): Float {
-        return 0.0f
-    }
+    open abstract fun calculateTheAreaOfTheFigure(): Float
+    open abstract fun calculateThePerimeterOfTheFigure(): Float
 }
 
 class Circle(
@@ -37,10 +36,10 @@ class Circle(
     val radius: Float,
 ) : Figure(color) {
     override fun calculateTheAreaOfTheFigure(): Float {
-        return PI * (radius.pow(2))
+        return (PI * (radius.pow(2))).toFloat()
     }
     override fun calculateThePerimeterOfTheFigure(): Float {
-        return PI * 2 * radius
+        return (PI * 2 * radius).toFloat()
     }
 }
 
@@ -57,4 +56,5 @@ class Rectangle(
     }
 }
 
-const val PI = 3.14f
+const val WIGHT_COLOR = "белый"
+const val BLACK_COLOR = "черный"
