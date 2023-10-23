@@ -1,10 +1,11 @@
 package lesson14
 
 fun main() {
-    val planetTerminus = Planet("Терминус", true, true)
     val satelliteSabina = Satellite("Сабина", true, false)
     val satelliteTitus = Satellite("Титус", true, false)
+    val planetTerminus = Planet("Терминус", true, true, mutableListOf(satelliteTitus, satelliteSabina))
 
+    println(planetTerminus.getPlanetInfo())
 }
 
 abstract class CelestialBody(
@@ -24,18 +25,10 @@ class Planet(
     isThereAnAtmosphere: Boolean,
     isItSuitableForDisembarkation: Boolean,
     val listOfSatellites: MutableList<Satellite>? = null,
-    val numberOfSatellite: Int? = listOfSatellites?.size ?: 0
+    val numberOfSatellite: Int = listOfSatellites?.size ?: 0,
 ) : CelestialBody(name, isThereAnAtmosphere, isItSuitableForDisembarkation) {
-    fun addSatellites(satellite: Satellite): MutableList<Satellite>? {
-        listOfSatellites?.add(satellite)
-        return listOfSatellites
-    }
 
-    fun getCelestialBodyInfo(): String {
-        return """
-            Название планеты: $name
-            Список спутников: 
-            ${listOfSatellites?.forEach { println(it.name) }}
-        """.trimIndent()
+    fun getPlanetInfo(): String {
+        return "Название планеты: $name\nСписок спутников: ${listOfSatellites?.joinToString { it.name } ?: "нет спутников"}"
     }
 }
