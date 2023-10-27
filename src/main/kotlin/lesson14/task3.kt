@@ -5,23 +5,23 @@ import kotlin.math.pow
 
 fun main() {
     val blackCircle = Circle(BLACK_COLOR, 5.02f)
-    val wightCircle = Circle(WIGHT_COLOR, 3.00f)
+    val wightCircle = Circle(WHITE_COLOR, 3.00f)
     val blackRectangle = Rectangle(BLACK_COLOR, 8.1f, 20.23f)
-    val wightRectangle = Rectangle(WIGHT_COLOR, 7.77f, 10.54f)
+    val wightRectangle = Rectangle(WHITE_COLOR, 7.77f, 10.54f)
 
     val figureList: MutableList<Figure> =
         mutableListOf<Figure>(blackCircle, wightCircle, blackRectangle, wightRectangle)
 
     val sumBlackFiguresPerimeter =
         figureList.filter { it.color == BLACK_COLOR }.map { it.calculateThePerimeterOfTheFigure() }.sum()
-    val sumWightFiguresArea =
-        figureList.filter { it.color == BLACK_COLOR }.map { it.calculateTheAreaOfTheFigure() }.sum()
+    val sumWhiteFiguresArea =
+        figureList.filter { it.color == WHITE_COLOR }.map { it.calculateTheAreaOfTheFigure() }.sum()
 
 
     println(
         """
         Сумма периметров чёрных фигур: ${String.format("%.2f", sumBlackFiguresPerimeter)}
-        Сумма площадей белых фигур: ${String.format("%.2f", sumWightFiguresArea)}
+        Сумма площадей белых фигур: ${String.format("%.2f", sumWhiteFiguresArea)}
     """.trimIndent()
     )
 }
@@ -58,5 +58,5 @@ class Rectangle(
     }
 }
 
-const val WIGHT_COLOR = "белый"
+const val WHITE_COLOR = "белый"
 const val BLACK_COLOR = "черный"
