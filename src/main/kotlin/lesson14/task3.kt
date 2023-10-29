@@ -5,12 +5,12 @@ import kotlin.math.pow
 
 fun main() {
     val blackCircle = Circle(BLACK_COLOR, 5.02f)
-    val wightCircle = Circle(WHITE_COLOR, 3.00f)
+    val whiteCircle = Circle(WHITE_COLOR, 3.00f)
     val blackRectangle = Rectangle(BLACK_COLOR, 8.1f, 20.23f)
-    val wightRectangle = Rectangle(WHITE_COLOR, 7.77f, 10.54f)
+    val whiteRectangle = Rectangle(WHITE_COLOR, 7.77f, 10.54f)
 
     val figureList: MutableList<Figure> =
-        mutableListOf<Figure>(blackCircle, wightCircle, blackRectangle, wightRectangle)
+        mutableListOf<Figure>(blackCircle, whiteCircle, blackRectangle, whiteRectangle)
 
     val sumBlackFiguresPerimeter =
         figureList.filter { it.color == BLACK_COLOR }.map { it.calculateThePerimeterOfTheFigure() }.sum()
