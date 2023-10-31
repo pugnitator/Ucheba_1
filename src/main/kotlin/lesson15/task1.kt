@@ -93,7 +93,7 @@ class Duck (
         println("Тонуть")
     }
     override fun rise() {
-        println("Взлетать с разбегом (по воде/морю)")
+        println("Взлетать с разбегом (по земле/воде)")
     }
     override fun land() {
         println("Приземляться (на землю/воду)")
