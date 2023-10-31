@@ -5,8 +5,8 @@ fun main() {
     val carp = CrucianCarp("Геннадий", 25, "Россия")
     val duck = Duck("Икви", 4, "Грузия")
 
-    seagull.toRise()
-    seagull.toLand()
+    seagull.rise()
+    seagull.land()
     seagull.fly()
     seagull.fall()
 
@@ -14,21 +14,21 @@ fun main() {
 
     carp.startSwimming()
     carp.finishSwimming()
-    carp.toDive()
-    carp.toSink()
-    carp.toSurface()
+    carp.dive()
+    carp.sink()
+    carp.surface()
 
     println()
 
-    duck.toRise()
-    duck.toLand()
+    duck.rise()
+    duck.land()
     duck.fly()
     duck.fall()
     duck.startSwimming()
     duck.finishSwimming()
-    duck.toDive()
-    duck.toSink()
-    duck.toSurface()
+    duck.dive()
+    duck.sink()
+    duck.surface()
 }
 
 class Seagull (
@@ -36,10 +36,10 @@ class Seagull (
     val age: Int,
     val habitat: String,
 ) : FlyingCreature {
-    override fun toRise() {
+    override fun rise() {
         println("Взлететь")
     }
-    override fun toLand() {
+    override fun land() {
         println("Приземлиться")
     }
     override fun fly() {
@@ -61,13 +61,13 @@ class CrucianCarp (
     override fun finishSwimming() {
         println("Перестать плыть")
     }
-    override fun toDive() {
+    override fun dive() {
         println("Погружаться")
     }
-    override fun toSurface() {
+    override fun surface() {
         println("Всплывать")
     }
-    override fun toSink() {
+    override fun sink() {
         println("Тонуть")
     }
 }
@@ -83,19 +83,19 @@ class Duck (
     override fun finishSwimming() {
         println("Перестать плыть")
     }
-    override fun toDive() {
+    override fun dive() {
         println("Нырнуть")
     }
-    override fun toSurface() {
+    override fun surface() {
         println("Вынырнуть")
     }
-    override fun toSink() {
+    override fun sink() {
         println("Тонуть")
     }
-    override fun toRise() {
+    override fun rise() {
         println("Взлетать с разбегом (по воде/морю)")
     }
-    override fun toLand() {
+    override fun land() {
         println("Приземляться (на землю/воду)")
     }
     override fun fly() {
@@ -110,14 +110,14 @@ class Duck (
 interface SwimmingCreature {
     fun startSwimming()
     fun finishSwimming()
-    fun toDive()
-    fun toSurface()
-    fun toSink()
+    fun dive()
+    fun surface()
+    fun sink()
 }
 
 interface FlyingCreature {
-    fun toRise()
-    fun toLand()
+    fun rise()
+    fun land()
     fun fly()
     fun fall()
 }
