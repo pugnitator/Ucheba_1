@@ -22,15 +22,15 @@ class WeatherServer() {
 }
 
 abstract class WeatherStationStats(val type: String) {
-    abstract fun getInfo()
+    abstract fun getInfo(): String
 }
 
 class Temperature(
     val date: LocalDate,
     val temperature: Float,
 ) : WeatherStationStats(type = "Температура") {
-    override fun getInfo() {
-        return println("Дата: ${date.toString()}, температура: $temperature")
+    override fun getInfo() : String {
+        return println("Дата: ${date.toString()}, температура: $temperature").toString()
     }
 }
 
@@ -39,7 +39,7 @@ class PrecipitationAmount(
     val precipitationAmount: Float,
 ) : WeatherStationStats(type = "Количество осадков") {
 
-    override fun getInfo() {
-        return println("Дата: $date, количество осадков: $precipitationAmount")
+    override fun getInfo() : String {
+        return println("Дата: $date, количество осадков: $precipitationAmount").toString()
     }
 }
