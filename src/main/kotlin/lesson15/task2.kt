@@ -2,10 +2,9 @@ package lesson15
 
 import java.time.LocalDate
 
-
 fun main() {
-    val temperature1 = Temperature (LocalDate(), 10.12f)
-    val precipitationAmount = PrecipitationAmount (LocalDate(2023,11, 11), 10.12f )
+    val temperature1 = Temperature(LocalDate.of(2023, 11, 1), 10.12f)
+    val precipitationAmount = PrecipitationAmount(LocalDate.of(2023, 11, 11), 10.12f)
     val server = WeatherServer()
 
     server.sendToTheServer(temperature1)
@@ -14,10 +13,11 @@ fun main() {
 
 class WeatherServer() {
     fun sendToTheServer(data: Any) {
-
-        if (data is Temperature) println(data.getInfo())
-        else if (data is PrecipitationAmount) println(data.getInfo())
-        else println("Ошибка отправки.")
+        when (data) {
+            is Temperature -> println(data.getInfo())
+            is PrecipitationAmount -> println(data.getInfo())
+            else -> println("Ошибка отправки.")
+        }
     }
 }
 
@@ -29,8 +29,8 @@ class Temperature(
     val date: LocalDate,
     val temperature: Float,
 ) : WeatherStationStats(type = "Температура") {
-    override fun getInfo() : String {
-        return println("Дата: ${date.toString()}, температура: $temperature").toString()
+    override fun getInfo(): String {
+        return "Дата: $date, температура: $temperature"
     }
 }
 
@@ -39,7 +39,8 @@ class PrecipitationAmount(
     val precipitationAmount: Float,
 ) : WeatherStationStats(type = "Количество осадков") {
 
-    override fun getInfo() : String {
-        return println("Дата: $date, количество осадков: $precipitationAmount").toString()
+    override fun getInfo(): String {
+        return "Дата: $date, количество осадков: $precipitationAmount"
     }
 }
+
