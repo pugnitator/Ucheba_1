@@ -1,12 +1,10 @@
 package lesson15
 
 fun main() {
-
     val harmonica = MusicalInstrument("harm", 12)
     val harmonicaCase = Component("футляр", 90)
 
     harmonica.findProduct(harmonicaCase.name)
-
 }
 
 abstract class Good(
