@@ -4,9 +4,9 @@ fun main() {
 
     val passengerCar = PassengerCar("volvo", 3, 0)
     val numberOfPeopleToTransport = 6
+    passengerCar.transportPassengers(numberOfPeopleToTransport, passengerCar.maxNumberOfPassengers)
 
 
-    println()
 
 //    val truck = Truck("Камаз", 1, 1, 1, 2.0f)
 //    truck.loadPassengers(1)
@@ -58,37 +58,50 @@ interface FunctionsForAllCar {
         return numberOfLoadPeople
     }
 
-    fun unloadPassengers(numberOfPeople: Int) {
-        println("Из автомобиля вышли $numberOfPeople человек(а)")
+    fun unloadPassengers() {
+        println("Из автомобиля вышли пассажиры.")
     }
 
-    fun transportPassengers(car: Any, numberOfPeopleToTransport: Int, maxLoadCapacity: Int) {
-        if (car is Truck || car is PassengerCar) {
-            var deliveredPeople = 0
-            do {
-                deliveredPeople += passengerCar.loadPassengers(
-                    numberOfPeopleToTransport,
-                    passengerCar.maxNumberOfPassengers
-                )
-                passengerCar.transportPassengers("Москва", "Петушки")
-                passengerCar.startDrive()
-                passengerCar.stopDrive()
-                passengerCar.unloadPassengers(numberOfPeopleToTransport)
-            } while (deliveredPeople != numberOfPeopleToTransport)
+    fun transportPassengers(numberOfPeopleToTransport: Int, maxLoadCapacity: Int) {
+        var undeliveredPeople = numberOfPeopleToTransport
+        var peopleOnTheTrip = 0
+        var tripNumber = 1
+        do {
+            println("Поездка $tripNumber")
+            peopleOnTheTrip = loadPassengers(undeliveredPeople, maxLoadCapacity)
+            startDrive()
+            stopDrive()
+            unloadPassengers()
+            undeliveredPeople -= peopleOnTheTrip
+            tripNumber += 1
+            println()
+        } while (undeliveredPeople > 0)
+    }
+}
 
-        } else println("Перевозка невозможна")
+interface ActionsWithCargo {
+    fun loadCargo(cargoWeight: Float, maxLoadCapacity: Float): Float {
+        var quantityOfLoadCargo = 0.0f
+        if (cargoWeight > maxLoadCapacity) quantityOfLoadCargo = maxLoadCapacity
+        else quantityOfLoadCargo = cargoWeight
+        println("Произведена посадка $quantityOfLoadCargo пассажира(ов)")
+        return quantityOfLoadCargo
     }
 
-    interface ActionsWithCargo {
-        fun loadCargo(cargoWeight: Float) {
-            println("Загрузить груз весом $cargoWeight")
-        }
-
-        fun unloadCargo(cargoWeight: Float) {
-            println("Выгрузить груз весом $cargoWeight")
-        }
-
-        fun transportCargo(pointA: String, pointB: String) {
-            println("Забрать груз по адресу $pointA и привезти по адресу $pointB")
-        }
+    fun unloadCargo() {
+        println("Выгрузить груз")
     }
+
+    fun transportCargo(quantityOfCargoToTransport: Float, maxLoadCapacity: Float) :  {
+        var undeliveredCargo = quantityOfCargoToTransport
+        var cargoOnTheTrip = 0.0f
+        var tripNumber = 1
+        do {
+            println("Поездка $tripNumber")
+            cargoOnTheTrip = loadCargo(undeliveredCargo, maxLoadCapacity)
+            unloadCargo()
+            undeliveredCargo -= cargoOnTheTrip
+            tripNumber += 1
+            println()
+        } while (undeliveredCargo > 0)
+}
