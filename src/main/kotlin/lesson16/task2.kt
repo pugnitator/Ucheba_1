@@ -4,14 +4,15 @@ import kotlin.math.pow
 
 fun main() {
     val circle = Circle(12.1f)
-    println(circle.getAreaOfCircle())
-    println(circle.getCircumference())
+    println("Площаадь круга: ${circle.getAreaOfCircle()}")
+    println("Длина окружности: ${circle.getCircumference()}")
 }
 
 class Circle(
     private val radius: Float,
 ) {
-    private val pi = 3.14f
-    fun getAreaOfCircle() = (pi * (radius.pow(2)))
-    fun getCircumference() = (pi * 2 * radius)
+    fun getAreaOfCircle() = PI * (radius.pow(2))
+    fun getCircumference() = PI * 2 * radius
 }
+
+private const val PI = 3.14f
