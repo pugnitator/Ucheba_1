@@ -10,11 +10,10 @@ class User(
     private val password: String,
 ) {
     fun checkPassword(): String {
-        val massage: String = when (enterThePassword()) {
+        return when (enterThePassword()) {
             password -> "Пароль верный"
             else -> "Пароль неверный"
         }
-        return massage
     }
 
     fun enterThePassword(): String {
