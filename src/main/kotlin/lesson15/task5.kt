@@ -1,60 +1,42 @@
 package lesson15
 
 fun main() {
-    val passengerCar = PassengerCar("volvo", 3,)
+    val passengerCar = PassengerCar("volvo", 3)
     val numberOfPeopleToTransport = 6
-    passengerCar.transportPassengers(numberOfPeopleToTransport, passengerCar.maxNumberOfPassengers)
+    passengerCar.transportPassengers(numberOfPeopleToTransport)
 
-    val truck = Truck("Камаз", 1, 2.0f,)
+    val truck = Truck("Камаз", 1, 2.0f)
     val quantityOfCargoToTransport = 2.0f
-    truck.transportCargo(quantityOfCargoToTransport, truck)
+    truck.transportCargo(quantityOfCargoToTransport)
 }
 
 abstract class Car(
     val model: String,
     val maxNumberOfPassengers: Int,
-) : FunctionsForAllCar
-
-class PassengerCar(
-    model: String,
-    maxNumberOfPassengers: Int,
-) : Car(model, maxNumberOfPassengers,)
-
-
-class Truck(
-    model: String,
-    maxNumberOfPassengers: Int,
-    val maxLoadCapacity: Float,
-) : Car(model, maxNumberOfPassengers,), ActionsWithCargo
-
-interface FunctionsForAllCar {
-    fun startDrive() {
+) : Movable, PassengerCarrier {
+    override fun startDrive() {
         println("Начать движение.")
     }
 
-    fun stopDrive() {
+    override fun stopDrive() {
         println("Прекратить движение.")
     }
 
-    fun loadPassengers(numberOfPeople: Int, maxNumberOfPeople: Int): Int {
-        var numberOfLoadPeople = 0
-        if (numberOfPeople > maxNumberOfPeople) numberOfLoadPeople = maxNumberOfPeople
-        else numberOfLoadPeople = numberOfPeople
+    override fun loadPassengers(numberOfPeopleToTransport: Int): Int {
+        val numberOfLoadPeople: Int
+        if (numberOfPeopleToTransport > maxNumberOfPassengers) numberOfLoadPeople = maxNumberOfPassengers
+        else numberOfLoadPeople = numberOfPeopleToTransport
         println("Произведена посадка $numberOfLoadPeople пассажира(ов)")
         return numberOfLoadPeople
     }
 
-    fun unloadPassengers() {
-        println("Из автомобиля вышли пассажиры.")
-    }
-
-    fun transportPassengers(numberOfPeopleToTransport: Int, maxLoadCapacity: Int) {
+    override fun transportPassengers(numberOfPeopleToTransport: Int) {
         var undeliveredPeople = numberOfPeopleToTransport
         var peopleOnTheTrip: Int
         var tripNumber = 1
         do {
             println("Поездка $tripNumber")
-            peopleOnTheTrip = loadPassengers(undeliveredPeople, maxLoadCapacity)
+            peopleOnTheTrip = loadPassengers(undeliveredPeople)
             startDrive()
             stopDrive()
             unloadPassengers()
@@ -63,10 +45,23 @@ interface FunctionsForAllCar {
             println()
         } while (undeliveredPeople > 0)
     }
+
+    override fun unloadPassengers() {
+        println("Из автомобиля вышли пассажиры.")
+    }
 }
 
-interface ActionsWithCargo {
-    fun loadCargo(cargoWeight: Float, maxLoadCapacity: Float): Float {
+class PassengerCar(
+    model: String,
+    maxNumberOfPassengers: Int,
+) : Car(model, maxNumberOfPassengers)
+
+class Truck(
+    model: String,
+    maxNumberOfPassengers: Int,
+    val maxLoadCapacity: Float,
+) : Car(model, maxNumberOfPassengers), CargoCarrier {
+    override fun loadCargo(cargoWeight: Float): Float {
         val quantityOfLoadCargo: Float
         if (cargoWeight > maxLoadCapacity) quantityOfLoadCargo = maxLoadCapacity
         else quantityOfLoadCargo = cargoWeight
@@ -74,23 +69,45 @@ interface ActionsWithCargo {
         return quantityOfLoadCargo
     }
 
-    fun unloadCargo() {
+    override fun unloadCargo() {
         println("Выгрузить груз")
     }
 
-    fun transportCargo(quantityOfCargoToTransport: Float, car: Truck) {
+    override fun transportCargo(quantityOfCargoToTransport: Float) {
         var undeliveredCargo = quantityOfCargoToTransport
         var cargoOnTheTrip: Float
         var tripNumber = 1
         do {
             println("Поездка для перевоза груза $tripNumber")
-            cargoOnTheTrip = loadCargo(undeliveredCargo, car.maxLoadCapacity)
-            car.startDrive()
-            car.stopDrive()
+            cargoOnTheTrip = loadCargo(undeliveredCargo)
+            startDrive()
+            stopDrive()
             unloadCargo()
             undeliveredCargo -= cargoOnTheTrip
             tripNumber += 1
             println()
         } while (undeliveredCargo > 0)
     }
+}
+
+interface Movable {
+    fun startDrive()
+
+    fun stopDrive()
+}
+
+interface PassengerCarrier {
+    fun loadPassengers(numberOfPeopleToTransport: Int): Int
+
+    fun unloadPassengers()
+
+    fun transportPassengers(numberOfPeopleToTransport: Int)
+}
+
+interface CargoCarrier {
+    fun loadCargo(cargoWeight: Float): Float
+
+    fun unloadCargo()
+
+    fun transportCargo(quantityOfCargoToTransport: Float)
 }
