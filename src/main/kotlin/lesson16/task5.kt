@@ -11,7 +11,7 @@ fun main() {
 }
 
 class Player(
-    val name: String,
+    private val name: String,
     private var health: Int = HEALTH,
     private var attackDamage: Int = ATTACK_DAMAGE,
 ) {
