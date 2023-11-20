@@ -1,7 +1,7 @@
 package lesson17
 
 fun main() {
-    val package1 = Package(123)
+    val package1 = Package(123, "Склад поставщика")
 
     package1.moveCargo("Распределительный центр")
     println(package1.getPackageInfo())
@@ -12,10 +12,14 @@ fun main() {
     println(package1.getPackageInfo())
 }
 
-class Package(private val packageNumber: Int) {
+class Package(
+    private val packageNumber: Int,
+    currentLocation: String,
+) {
     private var numberOfMovements: Int = 0
-    private var currentLocation = "Склад поставщика"
+    private var currentLocation = currentLocation
         set(value) {
+            field = value
             numberOfMovements += 1
         }
 
