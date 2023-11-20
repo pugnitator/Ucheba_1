@@ -1,9 +1,10 @@
 package lesson17
 
 fun main() {
-    val folder1 = Folder()
+    val folder1 = Folder("Папка1", 10)
     println(folder1.name)
     println(folder1.numberOfFiles)
+    println()
 
     folder1.isSecret = true
 
@@ -12,10 +13,12 @@ fun main() {
 }
 
 class Folder(
+    name: String,
+    numberOfFiles: Int,
     var isSecret: Boolean = false,
 ) {
-    var name: String = "Папка"
+    var name = name
         get() = if (isSecret) "Скрытая папка" else field
-    var numberOfFiles = 10
+    var numberOfFiles = numberOfFiles
         get() = if (isSecret) 0 else field
 }
