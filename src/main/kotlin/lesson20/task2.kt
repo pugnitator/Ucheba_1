@@ -15,7 +15,7 @@ fun main() {
 }
 
 class Hero(
-    val name: String,
+    private val name: String,
     val maxHealth: Int,
     var currentHealth: Int = maxHealth,
 ) {
