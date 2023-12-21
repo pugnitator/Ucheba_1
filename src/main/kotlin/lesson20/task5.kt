@@ -2,15 +2,14 @@ package lesson20
 
 fun main() {
     val robot = Robot()
-    robot.setModifier ({ it: String -> String
-        it.reversed()
-    }())
+    robot.say()
+
+    robot.setModifier({ phrase: String -> Unit
+        println(phrase.reversed()) }(robot.listOfPhrases.random()))
+    robot.say()
 }
 
-
-
 class Robot(
-    val listOfModifiers: MutableList<(Unit)> = mutableListOf(),
     val listOfPhrases: MutableList<String> = mutableListOf(
         "Одна ошибка - и ты ошибся",
         "Утро вечера мудренее",
@@ -19,8 +18,11 @@ class Robot(
         "Убить всех человеков"
     ),
 ) {
-
-    fun say() = println(listOfModifiers.last())
-    fun setModifier(modifier: String) {listOfModifiers.add(modifier)}
-
+    private var modifiers: Unit = { phrase: String -> Unit
+        println(phrase)
+    }(listOfPhrases.random())
+    fun say() = modifiers
+    fun setModifier(modifier: Unit) {
+        modifiers = modifier
+    }
 }
