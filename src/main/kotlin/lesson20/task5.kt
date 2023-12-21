@@ -4,8 +4,8 @@ fun main() {
     val robot = Robot()
     robot.say()
 
-    robot.setModifier({ phrase: String -> Unit
-        println(phrase.reversed()) }(robot.listOfPhrases.random()))
+    robot.setModifier({ phrase: String -> String
+        phrase.reversed() }(robot.listOfPhrases.random()))
     robot.say()
 }
 
@@ -18,11 +18,11 @@ class Robot(
         "Убить всех человеков"
     ),
 ) {
-    private var modifiers: Unit = { phrase: String -> Unit
-        println(phrase)
+    private var modifiers: String = { phrase: String -> String
+        phrase
     }(listOfPhrases.random())
-    fun say() = modifiers
-    fun setModifier(modifier: Unit) {
+    fun say() = println(modifiers)
+    fun setModifier(modifier: String) {
         modifiers = modifier
     }
 }
