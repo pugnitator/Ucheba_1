@@ -5,12 +5,4 @@ fun main() {
     println(text.numberOfVowelLetters())
 }
 
-fun String.numberOfVowelLetters(): Int {
-    var numberOfVowelLetters = 0
-    toCharArray().forEach {
-        when (it) {
-            'a', 'e', 'i', 'o', 'u' -> numberOfVowelLetters += 1
-        }
-    }
-    return numberOfVowelLetters
-}
+fun String.numberOfVowelLetters() = toCharArray().count { it == 'a' || it == 'e' || it == 'i' || it == 'o' || it == 'u' }
